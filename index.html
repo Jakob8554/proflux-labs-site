@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pro Flux Labs LLC — Henderson, Nevada (Clark County)</title>
+  <meta property="og:title" content="Pro Flux Labs LLC" />
+  <meta property="og:description" content="Performance marketing for home service contractors" />
+  <meta property="og:image" content="/assets/og.jpg" />
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="preload" as="image" href="/assets/hero.jpg">
+  
+  <style>
+    :root{
+      --bg:#ffffff; --fg:#0f172a; --muted:#64748b; --line:#e2e8f0; --card:#f8fafc;
+      --btn:#0f172a; --btnfg:#ffffff; --focus:#8b5cf6;
+      --accent:#8b5cf6; --accent-light:#8b5cf6;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif}
+    a{color:inherit;text-decoration:none}
+    a.u{ text-decoration:underline; text-underline-offset:2px }
+    a:focus{outline:2px solid var(--focus);outline-offset:2px;border-radius:8px}
+
+    .wrap{max-width:980px;margin:0 auto;padding:22px 18px 50px}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0 16px;border-bottom:1px solid var(--line)}
+    .brand{display:flex;align-items:center;gap:12px;min-width:0}
+    .logo{width:44px;height:44px;border:1px solid var(--line);border-radius:12px;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden;flex:0 0 auto}
+    .logo img{max-width:100%;max-height:100%;display:block}
+    .brandName{font-weight:700;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:520px}
+    .navlinks{display:flex;gap:14px;flex-wrap:wrap;justify-content:flex-end}
+    .navlinks a{padding:8px 10px;border-radius:10px;color:var(--muted);transition:background .2s,color .2s}
+    .navlinks a:hover{background:var(--card);color:var(--fg)}
+
+    .hero{
+      margin-top:18px;border:1px solid var(--line);border-radius:18px;overflow:hidden;
+      background-size:cover;background-position:center;
+      min-height:300px;display:flex;align-items:flex-end;
+      position:relative;
+    }
+    .hero::before{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,.55) 40%, rgba(255,255,255,.9) 100%);
+      pointer-events:none;
+    }
+    /* Dark hero overlay variant */
+    .hero.hero-dark::before{
+      background:linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,.5) 40%, rgba(0,0,0,.75) 100%);
+    }
+    .hero.hero-dark .heroInner{color:#fff}
+    .hero.hero-dark .sub{color:rgba(255,255,255,.85)}
+    .hero.hero-dark .heroLogo{border-color:rgba(255,255,255,.3)}
+    /* Centered hero variant */
+    .hero.hero-centered .heroInner{text-align:center}
+    .hero.hero-centered .heroLogo{margin-left:auto;margin-right:auto}
+    .hero.hero-centered .ctaRow{justify-content:center}
+
+    .heroInner{width:100%;position:relative;z-index:1;padding:22px;backdrop-filter:none;background:transparent}
+    .heroLogo{
+      width:72px;height:72px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:#fff;
+      display:flex;align-items:center;justify-content:center;
+      overflow:hidden;
+      margin-bottom:14px;
+      box-shadow:0 4px 20px rgba(0,0,0,.08);
+    }
+    .heroLogo img{max-width:100%;max-height:100%;display:block}
+    .h1{margin:0;font-size:28px;letter-spacing:-.02em;line-height:1.15}
+    .sub{margin:8px 0 0;color:var(--muted)}
+    .ctaRow{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap}
+    .btn,button.btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 14px;border-radius:12px;
+      background:var(--btn);color:var(--btnfg);font-weight:650;border:0;cursor:pointer;
+      transition:transform .15s,box-shadow .15s,opacity .15s;
+    }
+    .btn.secondary{background:#fff;color:var(--fg);border:1px solid var(--line)}
+    .btn:hover,button.btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.12)}
+    .btn:active,button.btn:active{transform:translateY(0);box-shadow:none}
+    .btn:disabled,button.btn:disabled{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none}
+
+    .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;margin-top:18px}
+    .grid.grid-flipped{grid-template-columns:.9fr 1.1fr}
+    .grid.grid-flipped > div:first-child{order:2}
+    .grid.grid-flipped > div:last-child{order:1}
+    @media (max-width:900px){.grid,.grid.grid-flipped{grid-template-columns:1fr}.grid.grid-flipped > div:first-child,.grid.grid-flipped > div:last-child{order:unset}}
+
+    .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;transition:box-shadow .2s,transform .2s}
+    .card:hover{box-shadow:0 8px 30px rgba(0,0,0,.06)}
+    .card h2{margin:0 0 10px;font-size:16px}
+    .muted{color:var(--muted)}
+    .svcGrid{display:grid;grid-template-columns:1fr;gap:10px}
+    .svc{
+      background:#fff;
+      border:1px solid var(--line);
+      border-left:3px solid var(--accent);
+      border-radius:14px;
+      padding:12px 12px 12px 14px;
+      transition:transform .15s,box-shadow .15s;
+    }
+    .svc:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.07)}
+    .svcTitle{font-weight:700}
+    .svcDesc{margin-top:6px;color:var(--muted);font-size:14px}
+
+    .kv{display:grid;grid-template-columns:140px 1fr;gap:10px 12px;margin:10px 0 0}
+    @media (max-width:520px){.kv{grid-template-columns:1fr}}
+    .kv div{padding:8px 0;border-top:1px dashed var(--line)}
+    .kv div:nth-child(-n+2){border-top:none}
+    .kv .k{color:var(--muted);font-size:13px}
+    .kv .v{font-size:14px}
+
+    form{margin-top:10px}
+    label{display:block;font-size:13px;color:var(--muted);margin:10px 0 6px}
+    input[type="text"],input[type="email"],input[type="tel"],textarea{
+      width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:#fff;font-size:14px;
+      transition:border-color .2s,box-shadow .2s;
+    }
+    textarea{min-height:110px;resize:vertical}
+    input:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb, var(--accent) 15%, transparent)}
+
+    .check{display:flex;gap:10px;align-items:flex-start;margin:12px 0}
+    .check input{margin-top:3px}
+    .check span{font-size:13px;color:var(--muted)}
+    .small.legal{font-size:12px;color:var(--muted);margin-top:10px}
+    .small.legal a{color:var(--accent) !important;text-decoration:underline;text-underline-offset:2px}
+
+    .foot{
+      margin-top:28px;
+      padding-top:16px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      font-size:13px;
+    }
+    .footGrid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:16px;
+    }
+    @media (max-width:900px){
+      .footGrid{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width:520px){
+      .footGrid{grid-template-columns:1fr}
+    }
+    .footTitle{
+      font-weight:800;
+      color:var(--fg);
+      margin-bottom:8px;
+    }
+    .footText{line-height:1.5}
+    .footMeta{margin-top:8px;font-size:12px;opacity:.85}
+    .footList{list-style:none;padding:0;margin:0}
+    .footList li{margin:6px 0;word-break:break-word}
+    .footList a{word-break:break-all}
+    .footBottom{
+      margin-top:18px;
+      padding-top:14px;
+      border-top:1px solid var(--line);
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      font-size:12px;
+    }
+    .platformNote{opacity:.75}
+
+    .directions-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      margin-top:14px;
+      padding:12px 18px;
+      background:var(--accent);
+      color:#fff;
+      border-radius:12px;
+      font-weight:600;
+      font-size:14px;
+      text-decoration:none;
+      transition:transform .15s,box-shadow .15s;
+    }
+    .directions-btn:hover{
+      transform:translateY(-1px);
+      box-shadow:0 4px 12px rgba(37,99,235,.25);
+    }
+    .directions-btn svg{flex-shrink:0}
+    
+    
+    /* Modal / Lightbox */
+    .modal-overlay{
+      display:none;
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.6);
+      backdrop-filter:blur(4px);
+      z-index:9999;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+    }
+    .modal-overlay.active{
+      display:flex;
+    }
+    .modal-box{
+      background:#fff;
+      border-radius:18px;
+      box-shadow:0 25px 80px rgba(0,0,0,.25);
+      max-width:420px;
+      width:100%;
+      padding:28px 24px;
+      text-align:center;
+      position:relative;
+      animation:modalIn .25s ease;
+    }
+    @keyframes modalIn{
+      from{opacity:0;transform:scale(.92) translateY(10px)}
+      to{opacity:1;transform:scale(1) translateY(0)}
+    }
+    .modal-box h3{
+      margin:0 0 10px;
+      font-size:22px;
+      color:#0f172a;
+    }
+    .modal-box p{
+      margin:0 0 18px;
+      color:#64748b;
+      font-size:15px;
+      line-height:1.5;
+    }
+    .modal-box .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px 24px;
+      border-radius:12px;
+      background:#0f172a;
+      color:#fff;
+      font-weight:600;
+      border:0;
+      cursor:pointer;
+      font-size:15px;
+      transition:transform .15s,box-shadow .15s;
+    }
+    .modal-box .btn:hover{
+      transform:translateY(-1px);
+      box-shadow:0 4px 12px rgba(0,0,0,.15);
+    }
+    .modal-close{
+      position:absolute;
+      top:12px;
+      right:12px;
+      width:32px;
+      height:32px;
+      border:0;
+      background:transparent;
+      cursor:pointer;
+      font-size:20px;
+      color:#94a3b8;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:8px;
+      transition:background .15s,color .15s;
+    }
+    .modal-close:hover{
+      background:#f1f5f9;
+      color:#0f172a;
+    }
+    .modal-logo{
+      width:80px;
+      height:80px;
+      border-radius:16px;
+      border:1px solid #e2e8f0;
+      background:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin:0 auto 16px;
+      overflow:hidden;
+      box-shadow:0 4px 20px rgba(0,0,0,.08);
+    }
+    .modal-logo img{
+      max-width:100%;
+      max-height:100%;
+      display:block;
+    }
+    .modal-icon-fallback{
+      width:80px;
+      height:80px;
+      background:linear-gradient(135deg,#10b981,#059669);
+      border-radius:16px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .modal-icon-fallback svg{
+      width:36px;
+      height:36px;
+      stroke:#fff;
+      stroke-width:3;
+      fill:none;
+    }
+
+  </style>
+
+</head>
+<body>
+  <div class="wrap">
+    
+  <div class="nav">
+    <div class="brand">
+      <div class="logo" style="">
+        <img src="/assets/logo.png" alt="Pro Flux Labs LLC logo" />
+      </div>
+      <div class="brandName">Pro Flux Labs LLC</div>
+    </div>
+    <div class="navlinks">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/services">Services</a>
+      <a href="/contact">Contact</a>
+    </div>
+  </div>
+
+
+    <div class="hero hero-centered hero-dark" style="background-image:url('/assets/hero.jpg')">
+      <div class="heroInner">
+        <div class="heroLogo" style="">
+          <img src="/assets/logo.png" alt="Pro Flux Labs LLC logo" />
+        </div>
+        <h1 class="h1">Performance marketing for home service contractors</h1>
+        <div class="sub">Pro Flux Labs LLC • Serving Henderson, Nevada (Clark County) • Updated 07/29/2026</div>
+        <div class="ctaRow">
+          <a class="btn" href="tel:+19259990285">Call</a>
+          <a class="btn secondary" href="#optin">Sign Up For Info</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-flipped">
+      <div class="card">
+        <h2>About</h2>
+        <p class="muted">Develop a marketing plan for home service contractors that aligns service offerings, target neighborhoods, and messaging to improve conversion from first visit to inquiry.</p>
+        <p style="margin-top:10px"><a class="u" href="/about">Learn more →</a></p>
+
+        <div style="margin-top:16px">
+          <h2>Services</h2>
+          <div class="svcGrid">
+            
+      <div class="svc">
+        <div class="svcTitle">Contractor Marketing Strategy</div>
+        <div class="svcDesc">Develop a marketing plan for home service contractors that aligns service offerings, target neighborhoods, and messaging to improve conversion from first visit to inquiry.</div>
+      </div>
+      <div class="svc">
+        <div class="svcTitle">Conversion-Focused Landing Pages</div>
+        <div class="svcDesc">Design and optimize landing pages for residential services with clear service details, trust elements, and conversion-ready layouts to increase the likelihood of form submissions.</div>
+      </div>
+      <div class="svc">
+        <div class="svcTitle">Campaign Setup and Optimization</div>
+        <div class="svcDesc">Manage and refine digital campaigns across search and related channels, using performance data to improve targeting, ad messaging, and overall conversion efficiency for contractor services.</div>
+      </div>
+          </div>
+          <p style="margin-top:10px"><a class="u" href="/services">View all services →</a></p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Contact</h2>
+        <div class="kv">
+          <div class="k">Email</div><div class="v"><a class="u" href="mailto:contact%40profluxlabsllcnebulabrandd.group">contact@profluxlabsllcnebulabrandd.group</a></div>
+          <div class="k">Phone</div><div class="v"><a class="u" href="tel:+19259990285">(925) 999-0285</a></div>
+          <div class="k">Address</div><div class="v">12 highland cove lane, henderson, nevada</div>
+        </div>
+        <a href="https://www.google.com/maps/search/?api=1&query=12%20highland%20cove%20lane%2C%20henderson%2C%20nevada" target="_blank" rel="noopener" class="directions-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          Get Directions
+        </a>
+      </div>
+    </div>
+
+    <div class="card" id="optin" style="margin-top:18px">
+      <h2>Request Information</h2>
+      <p class="muted">Reach out to Pro Flux Labs LLC to learn how our marketing services can support your home service business. Share your service area and what you offer, and we will respond with guidance on next steps and fit.</p>
+
+      <form id="optinForm" action="javascript:void(0)" method="post" autocomplete="on">
+        <label for="full_name">Full Name *</label>
+        <input id="full_name" name="full_name" type="text" required />
+
+        <label for="email">Email Address *</label>
+        <input id="email" name="email" type="email" required />
+
+        <label for="phone">Mobile Phone Number (Optional)</label>
+        <input id="phone" name="phone" type="tel" inputmode="tel" />
+
+        <div class="check">
+          <input id="sms_informational" name="sms_informational" type="checkbox" />
+          <span>
+          I consent to receive <strong>non-marketing messages about inquiry follow-ups, information requests, and service-related clarification messages</strong> from <strong>Pro Flux Labs LLC</strong>. Message frequency varies, up to 4 messages per month. Message & data rates may apply. Text HELP for assistance, reply STOP to opt out.
+          </span>
+        </div>
+
+        <div class="check">
+          <input id="sms_marketing" name="sms_marketing" type="checkbox" />
+          <span>
+          I consent to receive <strong>promotional notifications about home service marketing strategy updates, landing page improvement tips, and campaign optimization insights</strong> from <strong>Pro Flux Labs LLC</strong> at the phone number provided. Message frequency varies, up to 4 messages per month. Message & data rates may apply. Text HELP for assistance, reply STOP to opt out.
+          </span>
+        </div>
+
+        
+
+        <div style="margin-top:14px;font-size:13px">
+          <a href="/privacy" style="color:#2563eb;text-decoration:underline;text-underline-offset:2px">Privacy Policy</a> · <a href="/terms" style="color:#2563eb;text-decoration:underline;text-underline-offset:2px">Terms of Service</a>
+        </div>
+
+        <div class="ctaRow">
+          <button class="btn" type="submit" style="background:var(--accent);color:#fff;font-size:17px;padding:14px 32px">Submit</button>
+        </div>
+      </form>
+    </div>
+
+    
+  <footer class="foot">
+    <div class="footGrid">
+
+      <div class="footCol">
+        <div class="footTitle">Pro Flux Labs LLC</div>
+        <div class="footText">Develop a marketing plan for home service contractors that aligns service offerings, target neighborhoods, and messaging to improve conversion from first visit to inquiry.</div>
+        <div class="footMeta">
+          Serving Henderson, Nevada (Clark County)<br/>
+          Last updated 07/29/2026
+        </div>
+      </div>
+
+      <div class="footCol">
+        <div class="footTitle">Contact</div>
+        <ul class="footList">
+          <li>Email: <a class="u" href="mailto:contact%40profluxlabsllcnebulabrandd.group">contact@profluxlabsllcnebulabrandd.group</a></li>
+          <li>Phone: <a class="u" href="tel:+19259990285">(925) 999-0285</a></li>
+          <li>12 highland cove lane, henderson, nevada</li>
+        </ul>
+      </div>
+
+      <div class="footCol">
+        <div class="footTitle">Quick Links</div>
+        <ul class="footList">
+          <li><a class="u" href="/">Home</a></li>
+          <li><a class="u" href="/about">About</a></li>
+          <li><a class="u" href="/services">Services</a></li>
+          <li><a class="u" href="/contact">Contact</a></li>
+          <li><a class="u" href="/privacy">Privacy Policy</a></li>
+          <li><a class="u" href="/terms">Terms &amp; Conditions</a></li>
+          <li><a class="u" href="/sms">SMS Program</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footBottom">
+      <div>© Pro Flux Labs LLC</div>
+      <div class="platformNote">Site built with Nebula Brands Group </div>
+    </div>
+  </footer>
+
+  </div>
+
+  
+  <!-- Thank You Modal -->
+  <div class="modal-overlay" id="thankYouModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-box">
+      <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+      <div class="modal-logo" id="modalLogoWrap">
+        <img id="modalLogo" src="/assets/logo.png" alt="Pro Flux Labs LLC" onerror="this.parentElement.innerHTML='<div class=\'modal-icon-fallback\'><svg viewBox=\'0 0 24 24\'><polyline points=\'20 6 9 17 4 12\'></polyline></svg></div>'" />
+      </div>
+      <h3 id="modalTitle">Thank You!</h3>
+      <p><strong>Pro Flux Labs LLC</strong> will reach out within 24 hours by phone or text if you opted in.</p>
+      <p style="font-size:13px;color:#94a3b8;margin-bottom:14px;">
+        If you opted in for SMS, you can opt out any time by replying <strong>STOP</strong>. For help, reply <strong>HELP</strong>.
+      </p>
+      <button class="btn" id="modalOk">Got it</button>
+    </div>
+  </div>
+
+  
+  <script>
+    (function(){
+      var webhookUrl = 'https://hook.us2.make.com/thkc91ciiefnc6kk25wfemv4zhwy52as';
+      var businessName = 'Pro Flux Labs LLC';
+      var slug = 'profluxlabsllc';
+      var supportEmail = 'contact@profluxlabsllcnebulabrandd.group';
+      var supportPhone = '(925) 999-0285';
+
+      var modal = document.getElementById('thankYouModal');
+      var modalClose = document.getElementById('modalClose');
+      var modalOk = document.getElementById('modalOk');
+
+      function showModal(){
+        if(modal) modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+      function hideModal(){
+        if(modal) modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      if(modalClose) modalClose.addEventListener('click', hideModal);
+      if(modalOk) modalOk.addEventListener('click', hideModal);
+      if(modal){
+        modal.addEventListener('click', function(e){
+          if(e.target === modal) hideModal();
+        });
+      }
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'Escape') hideModal();
+      });
+
+      function handleFormSubmit(form, formType){
+        var submitBtn = form.querySelector('button[type="submit"]');
+        var originalText = submitBtn ? submitBtn.textContent : 'Submit';
+        
+        // Prevent double submit
+        if(submitBtn){
+          if(submitBtn.disabled) return;
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Submitting...';
+        }
+
+        var data = {
+          timestamp: new Date().toISOString(),
+          form_type: formType,
+          page_url: window.location.href,
+          business_name: businessName,
+          slug: slug,
+          support_email: supportEmail,
+          support_phone: supportPhone,
+          full_name: '',
+          email: '',
+          phone: '',
+          message: '',
+          sms_marketing: false,
+          sms_informational: false
+        };
+
+        var nameEl = form.querySelector('[name="full_name"], [name="name"]');
+        var emailEl = form.querySelector('[name="email"]');
+        var phoneEl = form.querySelector('[name="phone"]');
+        var msgEl = form.querySelector('[name="message"]');
+        var mktEl = form.querySelector('[name="sms_marketing"]');
+        var infoEl = form.querySelector('[name="sms_informational"]');
+
+        if(nameEl) data.full_name = nameEl.value || '';
+        if(emailEl) data.email = emailEl.value || '';
+        if(phoneEl) data.phone = phoneEl.value || '';
+        if(msgEl) data.message = msgEl.value || '';
+        if(mktEl) data.sms_marketing = mktEl.checked;
+        if(infoEl) data.sms_informational = infoEl.checked;
+
+        // Send to webhook (fire and forget - show success regardless)
+        if(webhookUrl){
+          fetch(webhookUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+            mode: 'no-cors' // Make.com webhooks may not have CORS headers
+          }).catch(function(){});
+        }
+
+        // Small delay for UX, then show modal
+        setTimeout(function(){
+          // Reset button
+          if(submitBtn){
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+          }
+          // Show modal
+          showModal();
+          // Reset form
+          form.reset();
+        }, 400);
+      }
+
+      // Attach to optin form (home page)
+      var optinForm = document.getElementById('optinForm');
+      if(optinForm){
+        optinForm.addEventListener('submit', function(e){
+          e.preventDefault();
+          handleFormSubmit(optinForm, 'optin');
+        });
+      }
+
+      // Attach to contact form
+      var contactForm = document.getElementById('contactForm');
+      if(contactForm){
+        contactForm.addEventListener('submit', function(e){
+          e.preventDefault();
+          handleFormSubmit(contactForm, 'contact');
+        });
+      }
+    })();
+  </script>
+
+</body>
+</html>
